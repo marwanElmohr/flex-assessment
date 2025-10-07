@@ -1,0 +1,69 @@
+{
+  "status": "success",
+  "result": [
+    {
+      "id": 7453,
+      "type": "host-to-guest",
+      "status": "published",
+      "rating": null,
+      "publicReview": "Shane and family are wonderful! Would definitely host again :)",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 10 },
+        { "category": "respect_house_rules", "rating": 10 }
+      ],
+      "submittedAt": "2020-08-21 22:45:14",
+      "guestName": "Shane Finkelstein",
+      "listingName": "2B N1 A - 29 Shoreditch Heights",
+      "channel": "airbnb"
+    },
+    {
+      "id": 7454,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 9,
+      "publicReview": "Great location and very clean. Had a small issue with check-in but host was responsive.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 9 },
+        { "category": "communication", "rating": 8 },
+        { "category": "check_in", "rating": 7 }
+      ],
+      "submittedAt": "2021-05-09 10:15:00",
+      "guestName": "Alex Johnson",
+      "listingName": "3C Soho Loft - Dean Street",
+      "channel": "booking"
+    },
+    {
+      "id": 7455,
+      "type": "guest-to-host",
+      "status": "pending",
+      "rating": 6,
+      "publicReview": "Nice apartment but quite noisy at night due to street traffic.",
+      "reviewCategory": [
+        { "category": "location", "rating": 10 },
+        { "category": "noise", "rating": 4 }
+      ],
+      "submittedAt": "2022-01-20 18:30:00",
+      "guestName": "Maria Lopez",
+      "listingName": "2B N1 A - 29 Shoreditch Heights",
+      "channel": "airbnb"
+    },
+    {
+      "id": 7456,
+      "type": "guest-to-host",
+      "status": "published",
+      "rating": 10,
+      "publicReview": "Perfect stay! Highly recommend.",
+      "reviewCategory": [
+        { "category": "cleanliness", "rating": 10 },
+        { "category": "communication", "rating": 10 },
+        { "category": "value", "rating": 10 }
+      ],
+      "submittedAt": "2023-07-12 08:00:00",
+      "guestName": "Samir Khan",
+      "listingName": "3C Soho Loft - Dean Street",
+      "channel": "direct"
+    }
+  ]
+}
+
