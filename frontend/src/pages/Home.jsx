@@ -8,7 +8,10 @@ import {
   faMinus,
   faPlus,
   faMagnifyingGlass,
+  faInfinity,
+  faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
+import Feature from "../components/Feature";
 
 export default function Home() {
   return (
@@ -82,45 +85,43 @@ export default function Home() {
         </div>
       </section>
 
-      <main className="container mx-auto px-6 py-12 space-y-16">
-        <section>
-          <h2 className="text-2xl font-bold mb-4">Corporate Housing</h2>
-          <p className="text-gray-700 mb-6">
-            The Flex partners with over 150 companies worldwide to deliver
-            corporate housing solutions for staffing, relocation, and insurance
-            claims.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Feature icon="🔍" title="Booking Service">
-              Skip the hassle — we’ll handle your searches.
-            </Feature>
-            <Feature icon="💚" title="Dedicated Account Manager">
-              Enjoy personalised service with a dedicated account manager.
-            </Feature>
-            <Feature icon="🧾" title="Flexible Terms">
-              Stay for days, weeks, or months with simple invoicing.
-            </Feature>
-          </div>
-        </section>
+      <section className="text-center bg-[#FFFDF6] p-12">
+        <h1 className="text-4xl font-bold mb-4">Corporate Housing</h1>
+        <p className="text-gray-700 mb-6">
+          The Flex partners with over 150 companies worldwide to deliver
+          corporate housing solutions for staffing, employee relocation, and
+          temporary accommodations for insurance claims. Our flexible, fully
+          furnished rentals are ideal for businesses and insurers seeking
+          reliable, move-in ready stays across global locations.
+        </p>
+        <div className="grid md:grid-cols-3 gap-6">
+          <Feature icon={faMagnifyingGlass} title="Booking Service">
+            Skip the hassle — we'll handle your searches. Whether you need one
+            apartment or several, we'll quickly deliver the best options
+            tailored to your specific needs.
+          </Feature>
+          <Feature icon={faHandshake} title="Dedicated Account Manager">
+            Enjoy personalised service with a dedicated account manager as your
+            single point of contact. From new bookings to ongoing stays, you'll
+            have expert support every step of the way.
+          </Feature>
+          <Feature icon={faInfinity} title="Flexible Terms">
+            We know plans change. That's why our flexible rental terms let you
+            book for as short or long as you need—with month-to-month leases,
+            hassle-free extensions, and easy exits to keep your business agile.
+          </Feature>
+        </div>
+      </section>
 
-        <section className="border-y border-yellow-300 bg-yellow-50 py-10 px-4 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Stay Longer, Save More</h2>
-          <p className="text-gray-700 mb-6">
-            The longer you stay, the more you save.
-          </p>
-          <TieredDiscounts />
-        </section>
-      </main>
-    </div>
-  );
-}
-
-function Feature({ icon, title, children }) {
-  return (
-    <div className="bg-white p-6 rounded-lg shadow">
-      <div className="text-3xl mb-2">{icon}</div>
-      <h3 className="font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600">{children}</p>
+      <section className="bg-[#FFF9E9] p-12 rounded-lg text-center">
+        <h1 className="text-4xl font-bold mb-4">Stay Longer, Save More</h1>
+        <p className="text-gray-700 mb-6">
+          The longer you stay, the more you save – great news for those looking
+          for hassle free long term rentals, extended business trips or
+          relocations.
+        </p>
+        <TieredDiscounts />
+      </section>
     </div>
   );
 }

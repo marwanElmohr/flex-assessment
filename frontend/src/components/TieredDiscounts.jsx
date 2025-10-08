@@ -7,6 +7,7 @@ export default function TieredDiscounts() {
     { label: "1 Month", pct: 20 },
     { label: "3 Months", pct: 29 },
     { label: "6 Months", pct: 30 },
+    { label: "1 Year", pct: 38 },
   ];
 
   const [animated, setAnimated] = useState(tiers.map(() => 0));
@@ -27,14 +28,14 @@ export default function TieredDiscounts() {
   }, []);
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
       {tiers.map((t, i) => (
         <div
           key={t.label}
           className="p-4 text-center bg-white rounded-lg shadow hover:shadow-xl hover:-translate-y-1 transition"
         >
           <h4 className="font-semibold text-gray-900 mb-1">{t.label}</h4>
-          <div className="text-3xl font-bold text-yellow-500">{animated[i]}%</div>
+          <div className="text-4xl font-bold">{animated[i]}%</div>
           <div className="text-sm text-gray-600">discount</div>
         </div>
       ))}
