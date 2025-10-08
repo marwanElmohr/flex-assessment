@@ -12,6 +12,7 @@ import {
   faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
 import Feature from "../components/Feature";
+import ChooseDates from "../components/ChooseDates";
 
 export default function Home() {
   return (
@@ -48,7 +49,7 @@ export default function Home() {
               <div className="flex items-center justify-between border-l border-gray-200">
                 <div className="rounded-md px-4 bg-transparent hover:cursor-pointer">
                   <FontAwesomeIcon icon={faCalendar} />
-                  <span className="text-gray-700 pl-2">Dates</span>
+                  <ChooseDates />
                 </div>
               </div>
 
