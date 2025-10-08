@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Feature from "../components/Feature";
 import ChooseDates from "../components/ChooseDates";
+import GuestsCount from "../components/GuestsCount";
 
 export default function Home() {
   return (
@@ -54,22 +55,7 @@ export default function Home() {
               </div>
 
               {/* guests */}
-              <div className="flex items-center justify-between border-l border-gray-200">
-                <FontAwesomeIcon icon={faUser} className="px-2" />
-                <button
-                  className="rounded-full hover:bg-gray-100"
-                  type="button"
-                >
-                  <FontAwesomeIcon icon={faMinus} />
-                </button>
-                <span className="text-gray-700 px-2">1 Guest</span>
-                <button
-                  className="rounded-full hover:bg-gray-100"
-                  type="button"
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                </button>
-              </div>
+              <GuestsCount />
 
               {/* Search Button */}
               <div>
