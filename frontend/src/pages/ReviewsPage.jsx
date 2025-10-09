@@ -5,6 +5,7 @@ import Reviews from "../components/ReviewsTable";
 
 export default function ReviewsPage() {
   const [reviews, setReviews] = useState([]);
+  const [allReviews, setAllReviews] = useState([]);
   const [listings, setListings] = useState([]);
   const [filters, setFilters] = useState({
     listingName: "",
@@ -25,6 +26,7 @@ export default function ReviewsPage() {
           sortDir: "desc",
         });
         setReviews(data);
+        setAllReviews(data);
 
         const uniqueListings = Array.from(
           new Set(data.map((r) => r.listingName).filter(Boolean))
@@ -83,6 +85,7 @@ export default function ReviewsPage() {
             filters={filters}
             onChange={handleFilterChange}
             onApply={handleApplyFilters}
+            reviews={allReviews}
           />
           <Reviews reviews={reviews} onApprovalChange={handleApprovalChange} />
         </div>

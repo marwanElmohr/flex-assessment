@@ -1,8 +1,18 @@
-export default function Filter({ listings, filters, onChange, onApply }) {
+export default function Filter({
+  listings,
+  filters,
+  onChange,
+  onApply,
+  reviews,
+}) {
   const inputClass =
     "border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500";
   const selectClass =
     "border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500";
+
+  const uniqueChannels = Array.from(
+    new Set(reviews.map((r) => r.channel).filter(Boolean))
+  );
 
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm flex flex-wrap gap-3 mb-6">
@@ -27,9 +37,11 @@ export default function Filter({ listings, filters, onChange, onApply }) {
         className={selectClass}
       >
         <option value="">All Channels</option>
-        <option value="Airbnb">Airbnb</option>
-        <option value="Booking.com">Booking.com</option>
-        <option value="Direct">Direct</option>
+        {uniqueChannels.map((ch) => (
+          <option key={ch} value={ch}>
+            {ch.charAt(0).toUpperCase() + ch.slice(1)}
+          </option>
+        ))}
       </select>
 
       <input
