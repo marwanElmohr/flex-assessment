@@ -4,9 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
   faCalendar,
-  faUser,
-  faMinus,
-  faPlus,
   faMagnifyingGlass,
   faInfinity,
   faHandshake,
@@ -14,6 +11,8 @@ import {
 import Feature from "../components/Feature";
 import ChooseDates from "../components/ChooseDates";
 import GuestsCount from "../components/GuestsCount";
+import Companies from "../components/CompaniesSec";
+import CompaniesSec from "../components/CompaniesSec";
 
 export default function Home() {
   return (
@@ -72,6 +71,16 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-[#FFF9E9] p-12 rounded-lg text-center">
+        <h1 className="text-4xl font-bold mb-4">Stay Longer, Save More</h1>
+        <p className="text-gray-700 mb-6">
+          The longer you stay, the more you save – great news for those looking
+          for hassle free long term rentals, extended business trips or
+          relocations.
+        </p>
+        <TieredDiscounts />
+      </section>
+
       <section className="text-center bg-[#FFFDF6] p-12">
         <h1 className="text-4xl font-bold mb-4">Corporate Housing</h1>
         <p className="text-gray-700 mb-6">
@@ -81,7 +90,9 @@ export default function Home() {
           furnished rentals are ideal for businesses and insurers seeking
           reliable, move-in ready stays across global locations.
         </p>
-        <div className="grid md:grid-cols-3 gap-6">
+
+        
+        <div className="grid md:grid-cols-3 gap-6 bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl ">
           <Feature icon={faMagnifyingGlass} title="Booking Service">
             Skip the hassle — we'll handle your searches. Whether you need one
             apartment or several, we'll quickly deliver the best options
@@ -101,14 +112,17 @@ export default function Home() {
       </section>
 
       <section className="bg-[#FFF9E9] p-12 rounded-lg text-center">
-        <h1 className="text-4xl font-bold mb-4">Stay Longer, Save More</h1>
+        <h1 className="text-4xl font-bold mb-4">Trusted by 150+ businesses</h1>
         <p className="text-gray-700 mb-6">
-          The longer you stay, the more you save – great news for those looking
-          for hassle free long term rentals, extended business trips or
-          relocations.
+          We establish trusted partnerships with our corporate partners, providing accommodation to employees relocating for <br>
+          </br>work. Our clients require quality living spaces in prime locations, and they occupy these spaces respectfully and responsibly.
         </p>
-        <TieredDiscounts />
+        <div className="py-16 bg-[#FFF9E9]">
+             <CompaniesSec />
+        </div>
       </section>
+      
+
     </div>
   );
 }
