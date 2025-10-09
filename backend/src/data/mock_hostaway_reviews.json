@@ -15,7 +15,7 @@
       "submittedAt": "2020-08-21 22:45:14",
       "guestName": "Shane Finkelstein",
       "listingName": "2B N1 A - 29 Shoreditch Heights",
-      "channel": "airbnb"
+      "channel": "Airbnb"
     },
     {
       "id": 7454,
@@ -31,7 +31,7 @@
       "submittedAt": "2021-05-09 10:15:00",
       "guestName": "Alex Johnson",
       "listingName": "3C Soho Loft - Dean Street",
-      "channel": "booking"
+      "channel": "Booking.com"
     },
     {
       "id": 7455,
@@ -46,7 +46,7 @@
       "submittedAt": "2022-01-20 18:30:00",
       "guestName": "Maria Lopez",
       "listingName": "2B N1 A - 29 Shoreditch Heights",
-      "channel": "airbnb"
+      "channel": "Airbnb"
     },
     {
       "id": 7456,
@@ -62,7 +62,7 @@
       "submittedAt": "2023-07-12 08:00:00",
       "guestName": "Samir Khan",
       "listingName": "3C Soho Loft - Dean Street",
-      "channel": "direct"
+      "channel": "Direct"
     }
   ]
 }

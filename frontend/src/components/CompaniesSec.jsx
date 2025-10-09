@@ -1,4 +1,3 @@
-
 import amazon from "../images/amazon.webp";
 import allianz from "../images/allianz.webp";
 import apple from "../images/apple.webp";

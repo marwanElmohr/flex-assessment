@@ -5,7 +5,7 @@ export default function ListingSelect({ listings, value, onChange }) {
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="border rounded px-3 py-2 w-full focus:ring-2 focus:ring-yellow-400 outline-none"
+        className="border rounded px-3 py-2 w-full focus:ring-2 focus:ring-[#284e4c] outline-none"
       >
         {listings.length === 0 ? (
           <option disabled>No listings available</option>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
 import ReviewsPage from "./pages/ReviewsPage";
 import PropertyReviews from "./pages/PropertyReviews";
 

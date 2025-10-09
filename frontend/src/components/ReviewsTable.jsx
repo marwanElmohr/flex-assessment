@@ -1,5 +1,5 @@
-import RatingBadge from './RatingBadge';
-import { setApproval, formatDate } from '../api/Reviews';
+import RatingBadge from "./RatingBadge";
+import { setApproval, formatDate } from "../api/Reviews";
 
 export default function Reviews({ reviews, onApprovalChange }) {
   return (
@@ -27,12 +27,12 @@ export default function Reviews({ reviews, onApprovalChange }) {
                     await setApproval(r.id, e.target.checked);
                     onApprovalChange?.(r.id, e.target.checked);
                   }}
-                  className="w-4 h-4 accent-blue-600"
+                  className="w-4 h-4 accent-[#284e4c]"
                 />
               </td>
-              <td className="px-4 py-3">{r.listingName || '—'}</td>
-              <td className="px-4 py-3">{r.channel || '—'}</td>
-              <td className="px-4 py-3">{r.guestName || '—'}</td>
+              <td className="px-4 py-3">{r.listingName || "—"}</td>
+              <td className="px-4 py-3">{r.channel || "—"}</td>
+              <td className="px-4 py-3">{r.guestName || "—"}</td>
               <td className="px-4 py-3">
                 <RatingBadge value={r.overallRating} />
               </td>

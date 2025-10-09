@@ -11,7 +11,6 @@ import {
 import Feature from "../components/Feature";
 import ChooseDates from "../components/ChooseDates";
 import GuestsCount from "../components/GuestsCount";
-import Companies from "../components/CompaniesSec";
 import CompaniesSec from "../components/CompaniesSec";
 
 export default function Home() {
@@ -91,7 +90,6 @@ export default function Home() {
           reliable, move-in ready stays across global locations.
         </p>
 
-        
         <div className="grid md:grid-cols-3 gap-6 bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl ">
           <Feature icon={faMagnifyingGlass} title="Booking Service">
             Skip the hassle — we'll handle your searches. Whether you need one
@@ -114,15 +112,15 @@ export default function Home() {
       <section className="bg-[#FFF9E9] p-12 rounded-lg text-center">
         <h1 className="text-4xl font-bold mb-4">Trusted by 150+ businesses</h1>
         <p className="text-gray-700 mb-6">
-          We establish trusted partnerships with our corporate partners, providing accommodation to employees relocating for <br>
-          </br>work. Our clients require quality living spaces in prime locations, and they occupy these spaces respectfully and responsibly.
+          We establish trusted partnerships with our corporate partners,
+          providing accommodation to employees relocating for <br /> work. Our
+          clients require quality living spaces in prime locations, and they
+          occupy these spaces respectfully and responsibly.
         </p>
         <div className="py-16 bg-[#FFF9E9]">
-             <CompaniesSec />
+          <CompaniesSec />
         </div>
       </section>
-      
-
     </div>
   );
 }
