@@ -165,3 +165,18 @@ export function applyFilters(reviews, query) {
     return true;
   });
 }
+
+
+
+
+
+
+// import { fetchGoogleReviews } from "./google.service.js";
+
+
+// Example: merge Google reviews for one property
+// const googlePlaceId = "ChIJN1t_tDeuEmsRUsoyG83frY4"; // Replace with real Place ID
+
+// const googleReviews = await fetchGoogleReviews(googlePlaceId);
+// return [...hostawayReviews, ...googleReviews];
+
