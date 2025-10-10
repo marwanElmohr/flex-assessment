@@ -49,63 +49,41 @@ export function writeApprovals(approvals) {
 }
 
 export async function fetchHostawayReviews() {
-  try {
-    const raw = fs.readFileSync(MOCK_PATH, "utf-8");
-    const parsed = JSON.parse(raw);
+  // Uncomment below to use Hostaway API
+  // const apiKey = process.env.HOSTAWAY_API_KEY;
 
-    const reviews = Array.isArray(parsed)
-      ? parsed
-      : Array.isArray(parsed.result)
-      ? parsed.result
-      : [];
+  // if (!apiKey) {
+  //   throw new Error("Hostaway credentials are missing in .env");
+  // }
 
-    const transformedReviews = reviews.map((review) => ({
-      ...review,
-      channel: CHANNELS_MAP[review.channelId] || "unknown",
-    }));
+  // const url = `https://api.hostaway.com/v1/reviews`;
+  // const response = await fetch(url, {
+  //   headers: { Authorization: `Bearer ${apiKey}` },
+  // });
 
-    return transformedReviews;
-  } catch (error) {
-    console.error("Error reading mock file:", error);
-    return [];
-  }
+  // if (!response.ok) {
+  //   const errText = await response.text();
+  //   throw new Error(`Hostaway API error: ${response.status} - ${errText}`);
+  // }
+
+  // const data = await response.json();
+
+  // mock data
+  const response = fs.readFileSync(MOCK_PATH, "utf-8");
+  const data = JSON.parse(response);
+
+  const reviews = Array.isArray(data.result)
+    ? data.result
+    : Array.isArray(data.reviews)
+    ? data.reviews
+    : [];
+
+  const transformedReviews = reviews.map((review) => ({
+    ...review,
+    channel: CHANNELS_MAP[review.channelId] || "unknown",
+  }));
+  return transformedReviews;
 }
-
-// export async function fetchHostawayReviews() {
-//   const accountId = process.env.HOSTAWAY_ACCOUNT_ID;
-//   const apiKey = process.env.HOSTAWAY_API_KEY;
-
-//   if (!accountId || !apiKey) {
-//     throw new Error("Hostaway credentials are missing in .env");
-//   }
-
-//   const url = `https://api.hostaway.com/v1/reviews?accountId=${accountId}`;
-//   const response = await fetch(url, {
-//     headers: {
-//       Authorization: `Bearer ${apiKey}`,
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   if (!response.ok) {
-//     const errText = await response.text();
-//     throw new Error(`Hostaway API error: ${response.status} - ${errText}`);
-//   }
-
-//   const data = await response.json();
-
-//   const reviews = Array.isArray(data.result)
-//     ? data.result
-//     : Array.isArray(data.reviews)
-//     ? data.reviews
-//     : [];
-
-//   const transformedReviews = reviews.map((review) => ({
-//     ...review,
-//     channel: CHANNELS_MAP[review.channelId] || "unknown",
-//   }));
-//   return transformedReviews;
-// }
 
 export function normalizeHostawayReview(raw, approvalsById) {
   const id = String(raw.id);
@@ -166,17 +144,10 @@ export function applyFilters(reviews, query) {
   });
 }
 
-
-
-
-
-
 // import { fetchGoogleReviews } from "./google.service.js";
-
 
 // Example: merge Google reviews for one property
 // const googlePlaceId = "ChIJN1t_tDeuEmsRUsoyG83frY4"; // Replace with real Place ID
 
 // const googleReviews = await fetchGoogleReviews(googlePlaceId);
 // return [...hostawayReviews, ...googleReviews];
-
