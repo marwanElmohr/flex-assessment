@@ -1,5 +1,5 @@
 export async function fetchGoogleReviews(placeId) {
-  const apiKey = import.meta.env.VITE_GOOGLE_PLACES_API_KEY;
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   if (!apiKey) throw new Error("Missing Google Places API key");
   if (!placeId) throw new Error("Missing Google Place ID");
 

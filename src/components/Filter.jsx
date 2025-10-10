@@ -1,5 +1,3 @@
-import ChooseDates from "./ChooseDates";
-
 export default function Filter({
   listings,
   filters,
@@ -28,6 +26,10 @@ export default function Filter({
         .filter(Boolean)
     )
   );
+
+  const uniqueDates = Array.from(
+    new Set(reviews.map((r) => r.submittedAt).filter(Boolean))
+  ).sort((a, b) => new Date(b) - new Date(a));
 
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm flex flex-wrap gap-3 mb-6">
@@ -69,6 +71,20 @@ export default function Filter({
         {uniqueCategories.map((cat) => (
           <option key={cat} value={cat}>
             {cat}
+          </option>
+        ))}
+      </select>
+
+      <select
+        id="dateFilter"
+        value={filters.chosenDate}
+        onChange={(e) => onChange("chosenDate", e.target.value)}
+        className={selectClass}
+      >
+        <option value="">All Dates</option>
+        {uniqueDates.map((date) => (
+          <option key={date} value={date}>
+            {date}
           </option>
         ))}
       </select>

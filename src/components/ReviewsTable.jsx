@@ -42,7 +42,7 @@ export default function Reviews({ reviews, onApprovalChange }) {
               <td className="px-4 py-3">
                 <RatingBadge value={r.rating} />
               </td>
-              <td className="px-4 py-3">{formatDate(r.arrivalDate)}</td>
+              <td className="px-4 py-3">{formatDate(r.submittedAt)}</td>
               <td className="px-4 py-3 text-gray-700">{r.publicReview}</td>
             </tr>
           ))}

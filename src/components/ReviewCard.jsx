@@ -13,7 +13,7 @@ export default function ReviewCard({ review }) {
       <p className="text-gray-800 mb-3">{review.publicReview}</p>
 
       <div className="meta flex justify-between text-xs text-gray-500">
-        <span>{formatDate(review.arrivalDate)}</span>
+        <span>{formatDate(review.submittedAt)}</span>
         <span>{review.channel}</span>
       </div>
     </div>

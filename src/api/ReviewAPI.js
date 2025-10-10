@@ -31,8 +31,7 @@ export function applyFilters(reviews, query = {}) {
     channel,
     type,
     status,
-    startDate,
-    endDate,
+    chosenDate,
     minRating,
     category,
   } = query;
@@ -48,14 +47,7 @@ export function applyFilters(reviews, query = {}) {
       const hasCategory = r.reviewCategory.some((c) => c.category === category);
       if (!hasCategory) return false;
     }
-    if (startDate && endDate) {
-      const overlaps =
-        (r.arrivalDate >= startDate && r.arrivalDate <= endDate) ||
-        (r.departureDate >= startDate && r.departureDate <= endDate) ||
-        (r.arrivalDate <= startDate && r.departureDate >= endDate);
-
-      if (!overlaps) return false;
-    }
+    if (chosenDate && r.submittedAt !== chosenDate) return false;
 
     return true;
   });

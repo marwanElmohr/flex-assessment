@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# Reviews Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a **frontend-only Reviews Dashboard** built for the **Flex Living Developer Assessment**.  
+It allows property managers to view, filter, and manage guest reviews (mocked from the Hostaway API).
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+The dashboard helps Flex Living managers:
 
-### `npm start`
+- See per-property performance across all listings.
+- Filter reviews by:
+  - Listing name
+  - Channel
+  - Category
+  - Rating
+  - Dates
+- Approve or unapprove reviews for public display.
+- View only approved reviews on a property display page.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+All reviews are loaded from a **mocked JSON file** simulating Hostaway API responses, because using the provided API key gave a server denied error.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- Frontend: JS + React + Tailwind
+- Integration: Optional Hostaway API and Google Places Details API
+- Config: dotenv for environment variables
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Architecture and Data Flow
 
-### `npm run build`
+- Reviews are read from src/data/mock_hostaway_reviews.json.
+- The Google endpoint queries the Places Details API when GOOGLE_PLACES_API_KEY is set.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Review Schema
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- id: int
+- channelId: int
+- type: string
+- status: string
+- rating: int
+- publicReview: string (based on given pdf)
+- privateFeedback: int (1 if can be publicly viewed, 0 if not)
+- reviewCategory: array
+- submittedAt: date
+- listingName: string
+- guestName: string
+- channel: string (added based on channel map)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Key Design and Logic Decisions
 
-### `npm run eject`
+- Simplicity first: easy to run locally.
+- File-based persistence: Keeps the demo self-contained and transparent.
+- Deterministic normalization:
+  - Dates coerced to ISO for consistent filtering and sorting.
+  - Uniform response contract regardless of raw source shape.
+- Graceful failure modes:
+  - Missing or malformed mock data → return empty list safely.
+- Filtering/sorting: Keeps UI simpler and reduces client logic.
+- Optional integrations: Google endpoint degrades with status: "unconfigured" when API key is absent.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Operational Notes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Run locally**: `npm install` → `npm start` → open `http://localhost:3000`
+- **Environment**: Set `GOOGLE_PLACES_API_KEY` to enable the Google endpoint; otherwise it reports `unconfigured`, and `REACT_APP_HOSTAWAY_API_KEY` to enable the Hostaway endpoint.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Extension Points
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Add pagination or additional filters to `/api/reviews/hostaway`.
+- Introduce authentication/authorization for approval actions if moving beyond a demo.
 
-## Learn More
+## Google Reviews (Exploration Findings)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Explored integration using Google Places API.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+API provides review data via the place/details endpoint.
 
-### Code Splitting
+Requires Google Place IDs for each property.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Billing must be enabled on a Google Cloud project and I cant use mine.
 
-### Analyzing the Bundle Size
+Each account receives $300 monthly free credit (sufficient for small use).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Integration was not completed due to lack of billing setup and missing Place IDs.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Future work: map each listing to its Google Place ID and enable limited integration under free tier.

@@ -59,8 +59,7 @@ export default function ReviewsPage() {
       channel: "",
       category: "",
       minRating: "",
-      startDate: null,
-      endDate: null,
+      chosenDate: "",
       sortBy: "",
       sortDir: "",
     });
