@@ -19,6 +19,10 @@ The dashboard helps Flex Living managers:
 
 All reviews are loaded from a **mocked JSON file** simulating Hostaway API responses, because using the provided API key gave a server denied error.
 
+## Deployment
+
+This project was deployed using Vercel and can be accessed here: [https://flex-assessment-9km83efb2-marwans-projects-9f932668.vercel.app/](https://flex-assessment-9km83efb2-marwans-projects-9f932668.vercel.app/)
+
 ## Tech Stack
 
 - Frontend: JS + React + Tailwind
@@ -64,7 +68,7 @@ All reviews are loaded from a **mocked JSON file** simulating Hostaway API respo
 
 ## Extension Points
 
-- Add pagination or additional filters to `/api/reviews/hostaway`.
+- Add pagination or additional filters to fetchReviews.
 - Introduce authentication/authorization for approval actions if moving beyond a demo.
 
 ## Google Reviews (Exploration Findings)
@@ -82,3 +86,7 @@ Each account receives $300 monthly free credit (sufficient for small use).
 Integration was not completed due to lack of billing setup and missing Place IDs.
 
 Future work: map each listing to its Google Place ID and enable limited integration under free tier.
+
+## AI Tools
+
+- Chatgpt was used to help with debigging for some doubts i had throughout the project.
