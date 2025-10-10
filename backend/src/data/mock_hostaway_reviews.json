@@ -1,69 +1,156 @@
 {
-  "status": "success",
-  "result": [
+  "reviews": [
     {
-      "id": 7453,
+      "id": 1,
+      "accountId": 1,
+      "listingMapId": 1,
+      "reservationId": 1,
+      "autoReviewId": null,
+      "timeDelta": null,
+      "scheduledDateTime": null,
+      "channelId": 2018,
       "type": "host-to-guest",
       "status": "published",
-      "rating": null,
+      "rating": 4,
+      "externalReviewId": null,
+      "externalReservationId": null,
       "publicReview": "Shane and family are wonderful! Would definitely host again :)",
+      "privateFeedback": 1,
+      "revieweeResponse": null,
+      "isRevieweeRecommended": null,
+      "isCancelled": 0,
+      "autoReviewTemplateId": null,
       "reviewCategory": [
-        { "category": "cleanliness", "rating": 10 },
-        { "category": "communication", "rating": 10 },
-        { "category": "respect_house_rules", "rating": 10 }
+        {
+          "category": "cleanliness",
+          "rating": 10
+        },
+        {
+          "category": "communication",
+          "rating": 10
+        },
+        {
+          "category": "respect_house_rules",
+          "rating": 10
+        }
       ],
-      "submittedAt": "2020-08-21 22:45:14",
-      "guestName": "Shane Finkelstein",
+      "departureDate": "2020-08-21 22:45:14",
+      "arrivalDate": "2020-08-10 14:00:25",
       "listingName": "2B N1 A - 29 Shoreditch Heights",
-      "channel": "Airbnb"
+      "guestName": "Shane Finkelstein"
     },
     {
-      "id": 7454,
+      "id": 2,
+      "accountId": 1,
+      "listingMapId": 1,
+      "reservationId": 5,
+      "autoReviewId": null,
+      "timeDelta": null,
+      "scheduledDateTime": null,
+      "channelId": 2005,
       "type": "guest-to-host",
       "status": "published",
       "rating": 9,
+      "externalReviewId": null,
+      "externalReservationId": null,
       "publicReview": "Great location and very clean. Had a small issue with check-in but host was responsive.",
+      "privateFeedback": 0,
+      "revieweeResponse": null,
+      "isRevieweeRecommended": null,
+      "isCancelled": 0,
+      "autoReviewTemplateId": null,
       "reviewCategory": [
-        { "category": "cleanliness", "rating": 9 },
-        { "category": "communication", "rating": 8 },
-        { "category": "check_in", "rating": 7 }
+        {
+          "category": "cleanliness",
+          "rating": 9
+        },
+        {
+          "category": "communication",
+          "rating": 8
+        },
+        {
+          "category": "check_in",
+          "rating": 7
+        }
       ],
-      "submittedAt": "2021-05-09 10:15:00",
-      "guestName": "Alex Johnson",
+      "departureDate": "2021-05-09 10:15:00",
+      "arrivalDate": "2021-05-06 14:30:00",
       "listingName": "3C Soho Loft - Dean Street",
-      "channel": "Booking.com"
+      "guestName": "Alex Johnson"
     },
     {
-      "id": 7455,
+      "id": 3,
+      "accountId": 5,
+      "listingMapId": 1,
+      "reservationId": 18,
+      "autoReviewId": null,
+      "timeDelta": null,
+      "scheduledDateTime": null,
+      "channelId": 2018,
       "type": "guest-to-host",
       "status": "pending",
       "rating": 6,
+      "externalReviewId": null,
+      "externalReservationId": null,
       "publicReview": "Nice apartment but quite noisy at night due to street traffic.",
+      "privateFeedback": 0,
+      "revieweeResponse": null,
+      "isRevieweeRecommended": null,
+      "isCancelled": 0,
+      "autoReviewTemplateId": null,
       "reviewCategory": [
-        { "category": "location", "rating": 10 },
-        { "category": "noise", "rating": 4 }
+        {
+          "category": "location",
+          "rating": 10
+        },
+        {
+          "category": "noise",
+          "rating": 4
+        }
       ],
-      "submittedAt": "2022-01-20 18:30:00",
-      "guestName": "Maria Lopez",
+      "departureDate": "2022-01-20 18:30:00",
+      "arrivalDate": "2022-01-15 16:00:00",
       "listingName": "2B N1 A - 29 Shoreditch Heights",
-      "channel": "Airbnb"
+      "guestName": "Maria Lopez"
     },
     {
-      "id": 7456,
+      "id": 4,
+      "accountId": 8,
+      "listingMapId": 1,
+      "reservationId": 32,
+      "autoReviewId": null,
+      "timeDelta": null,
+      "scheduledDateTime": null,
+      "channelId": 2000,
       "type": "guest-to-host",
       "status": "published",
       "rating": 10,
+      "externalReviewId": null,
+      "externalReservationId": null,
       "publicReview": "Perfect stay! Highly recommend.",
+      "privateFeedback": 1,
+      "revieweeResponse": null,
+      "isRevieweeRecommended": null,
+      "isCancelled": 0,
+      "autoReviewTemplateId": null,
       "reviewCategory": [
-        { "category": "cleanliness", "rating": 10 },
-        { "category": "communication", "rating": 10 },
-        { "category": "value", "rating": 10 }
+        {
+          "category": "cleanliness",
+          "rating": 10
+        },
+        {
+          "category": "communication",
+          "rating": 10
+        },
+        {
+          "category": "value",
+          "rating": 10
+        }
       ],
-      "submittedAt": "2023-07-12 08:00:00",
-      "guestName": "Samir Khan",
+      "departureDate": "2023-07-12 08:00:00",
+      "arrivalDate": "2023-07-10 15:00:00",
       "listingName": "3C Soho Loft - Dean Street",
-      "channel": "Direct"
+      "guestName": "Samir Khan"
     }
   ]
 }
-

@@ -1,22 +1,19 @@
 import {
   fetchHostawayReviews,
-  normalizeHostawayReview,
   applyFilters,
   readApprovals,
   writeApprovals,
-} from '../services/reviews.service.js';
-import fetch from 'node-fetch';
+} from "../services/reviews.service.js";
+import fetch from "node-fetch";
 
 export async function getHostawayReviews(req, res) {
   try {
-    const approvals = readApprovals();
     const raw = await fetchHostawayReviews();
-    const normalized = raw.map(item => normalizeHostawayReview(item, approvals));
-    const filtered = applyFilters(normalized, req.query);
+    const filtered = applyFilters(raw, req.query);
 
     const { sortBy, sortDir } = req.query;
     if (sortBy) {
-      const dir = sortDir === 'asc' ? 1 : -1;
+      const dir = sortDir === "asc" ? 1 : -1;
       filtered.sort((a, b) => {
         const va = a[sortBy];
         const vb = b[sortBy];
@@ -27,29 +24,35 @@ export async function getHostawayReviews(req, res) {
       });
     }
 
-    res.json({ status: 'success', count: filtered.length, result: filtered });
+    res.json({ status: "success", count: filtered.length, result: filtered });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ status: 'error', message: 'Failed to fetch reviews' });
+    res
+      .status(500)
+      .json({ status: "error", message: "Failed to fetch reviews" });
   }
 }
 
 export function getApprovedReviews(req, res) {
-  const approvals = readApprovals();
+  const { listingName } = req.query;
+  const approvals = readApprovals(listingName);
   res.json({
-    status: 'success',
-    approvedIds: Object.keys(approvals).filter(k => approvals[k]),
+    status: "success",
+    approved: approvals,
   });
 }
 
 export function approveReview(req, res) {
-  const { reviewId, approved } = req.body || {};
+  const { reviewId } = req.body || {};
   if (!reviewId)
-    return res.status(400).json({ status: 'error', message: 'reviewId required' });
-  const approvals = readApprovals();
-  approvals[String(reviewId)] = Boolean(approved);
-  writeApprovals(approvals);
-  res.json({ status: 'success', reviewId: String(reviewId), approved: Boolean(approved) });
+    return res
+      .status(400)
+      .json({ status: "error", message: "reviewId required" });
+  writeApprovals(reviewId);
+  res.json({
+    status: "success",
+    reviewId: String(reviewId),
+  });
 }
 
 export async function getGoogleReviews(req, res) {
@@ -58,12 +61,14 @@ export async function getGoogleReviews(req, res) {
 
   if (!apiKey) {
     return res.status(200).json({
-      status: 'unconfigured',
-      message: 'Set GOOGLE_PLACES_API_KEY to enable Google Reviews fetch.',
+      status: "unconfigured",
+      message: "Set GOOGLE_PLACES_API_KEY to enable Google Reviews fetch.",
     });
   }
   if (!placeId) {
-    return res.status(400).json({ status: 'error', message: 'placeId is required' });
+    return res
+      .status(400)
+      .json({ status: "error", message: "placeId is required" });
   }
 
   try {
@@ -80,7 +85,7 @@ export async function getGoogleReviews(req, res) {
       userRatingsTotal: result.user_ratings_total,
       url: result.url,
       reviews: Array.isArray(result.reviews)
-        ? result.reviews.map(r => ({
+        ? result.reviews.map((r) => ({
             id: r.time,
             authorName: r.author_name,
             rating: r.rating,
@@ -92,14 +97,14 @@ export async function getGoogleReviews(req, res) {
         : [],
     };
 
-    res.json({ status: 'success', result: normalized });
+    res.json({ status: "success", result: normalized });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ status: 'error', message: 'Failed to fetch Google Reviews' });
+    res
+      .status(500)
+      .json({ status: "error", message: "Failed to fetch Google Reviews" });
   }
 }
-
-
 
 // import { getAllReviews } from "../services/reviews.service.js";
 
@@ -111,4 +116,3 @@ export async function getGoogleReviews(req, res) {
 //     res.status(500).json({ error: err.message });
 //   }
 // }
-

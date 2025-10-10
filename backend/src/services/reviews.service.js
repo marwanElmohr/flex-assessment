@@ -1,12 +1,10 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { toISODate } from "../utils/dateUtils.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_DIR = path.join(__dirname, "../data");
-const APPROVALS_PATH = path.join(DATA_DIR, "approvals.json");
 const MOCK_PATH = path.join(DATA_DIR, "mock_hostaway_reviews.json");
 
 const CHANNELS_MAP = {
@@ -27,25 +25,29 @@ const CHANNELS_MAP = {
   2022: "google",
 };
 
-export function ensureApprovalsFile() {
-  if (!fs.existsSync(APPROVALS_PATH)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-    fs.writeFileSync(APPROVALS_PATH, JSON.stringify({}), "utf-8");
-  }
+export function readApprovals(listingName) {
+  const data = JSON.parse(fs.readFileSync(MOCK_PATH, "utf8"));
+  const reviews = Array.isArray(data) ? data : data.reviews || [];
+  return reviews.filter(
+    (review) =>
+      review.privateFeedback === 1 && review.listingName === listingName
+  );
 }
 
-export function readApprovals() {
-  ensureApprovalsFile();
-  try {
-    const raw = fs.readFileSync(APPROVALS_PATH, "utf-8");
-    return JSON.parse(raw || "{}");
-  } catch {
-    return {};
-  }
-}
+export function writeApprovals(id) {
+  const data = JSON.parse(fs.readFileSync(MOCK_PATH, "utf8"));
+  const reviews = data.reviews || [];
+  const review = reviews.find((r) => r.id === id);
 
-export function writeApprovals(approvals) {
-  fs.writeFileSync(APPROVALS_PATH, JSON.stringify(approvals, null, 2), "utf-8");
+  if (!review) {
+    console.error("Review not found!");
+    return;
+  }
+
+  review.privateFeedback = review.privateFeedback === 1 ? 0 : 1;
+
+  fs.writeFileSync(MOCK_PATH, JSON.stringify(data, null, 2));
+  console.log("Approval status updated!", review);
 }
 
 export async function fetchHostawayReviews() {
@@ -72,50 +74,13 @@ export async function fetchHostawayReviews() {
   const response = fs.readFileSync(MOCK_PATH, "utf-8");
   const data = JSON.parse(response);
 
-  const reviews = Array.isArray(data.result)
-    ? data.result
-    : Array.isArray(data.reviews)
-    ? data.reviews
-    : [];
+  const reviews = data.reviews || [];
 
   const transformedReviews = reviews.map((review) => ({
     ...review,
     channel: CHANNELS_MAP[review.channelId] || "unknown",
   }));
   return transformedReviews;
-}
-
-export function normalizeHostawayReview(raw, approvalsById) {
-  const id = String(raw.id);
-  const approved = Boolean(approvalsById[id]);
-  let overallRating = raw.rating;
-  if (
-    overallRating == null &&
-    Array.isArray(raw.reviewCategory) &&
-    raw.reviewCategory.length > 0
-  ) {
-    const sum = raw.reviewCategory.reduce(
-      (acc, c) => acc + (Number(c.rating) || 0),
-      0
-    );
-    overallRating = Math.round((sum / raw.reviewCategory.length) * 10) / 10;
-  }
-
-  return {
-    id,
-    listingName: raw.listingName || null,
-    type: raw.type || null,
-    status: raw.status || null,
-    channel: raw.channel || "hostaway",
-    submittedAt: toISODate(raw.submittedAt),
-    guestName: raw.guestName || null,
-    text: raw.publicReview || raw.privateReview || "",
-    overallRating,
-    categories: Array.isArray(raw.reviewCategory)
-      ? raw.reviewCategory.map((c) => ({ key: c.category, rating: c.rating }))
-      : [],
-    approved,
-  };
 }
 
 export function applyFilters(reviews, query) {

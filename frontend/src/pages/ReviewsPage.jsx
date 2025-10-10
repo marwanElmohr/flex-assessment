@@ -53,19 +53,17 @@ export default function ReviewsPage() {
     setReviews(filtered);
   };
 
-  const handleApprovalChange = async (reviewId, approved) => {
+  const handleApprovalChange = async () => {
     try {
-      setReviews((prev) =>
-        prev.map((r) => (r.id === reviewId ? { ...r, approved } : r))
-      );
-
-      const params = Object.fromEntries(
-        Object.entries(filters).filter(([_, v]) => v)
-      );
-      const updated = await fetchReviews(params);
+      const updated = await fetchReviews({
+        sortBy: "submittedAt",
+        sortDir: "desc",
+      });
       setReviews(updated);
-    } catch (error) {
-      console.error("Failed to update approval:", error);
+      setAllReviews(updated);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to update approval:", error);
     }
   };
 

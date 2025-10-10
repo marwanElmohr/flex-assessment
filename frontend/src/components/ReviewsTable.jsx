@@ -22,10 +22,10 @@ export default function Reviews({ reviews, onApprovalChange }) {
               <td className="px-4 py-3">
                 <input
                   type="checkbox"
-                  checked={!!r.approved}
+                  checked={r.privateFeedback === 1}
                   onChange={async (e) => {
-                    await setApproval(r.id, e.target.checked);
-                    onApprovalChange?.(r.id, e.target.checked);
+                    await setApproval(r.id);
+                    onApprovalChange?.();
                   }}
                   className="w-4 h-4 accent-[#284e4c]"
                 />
@@ -34,10 +34,10 @@ export default function Reviews({ reviews, onApprovalChange }) {
               <td className="px-4 py-3">{r.channel || "—"}</td>
               <td className="px-4 py-3">{r.guestName || "—"}</td>
               <td className="px-4 py-3">
-                <RatingBadge value={r.overallRating} />
+                <RatingBadge value={r.rating} />
               </td>
-              <td className="px-4 py-3">{formatDate(r.submittedAt)}</td>
-              <td className="px-4 py-3 text-gray-700">{r.text}</td>
+              <td className="px-4 py-3">{formatDate(r.arrivalDate)}</td>
+              <td className="px-4 py-3 text-gray-700">{r.publicReview}</td>
             </tr>
           ))}
         </tbody>
