@@ -98,3 +98,17 @@ export async function getGoogleReviews(req, res) {
     res.status(500).json({ status: 'error', message: 'Failed to fetch Google Reviews' });
   }
 }
+
+
+
+// import { getAllReviews } from "../services/reviews.service.js";
+
+// export async function getReviews(req, res) {
+//   try {
+//     const reviews = await getAllReviews();
+//     res.json(reviews);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// }
+
