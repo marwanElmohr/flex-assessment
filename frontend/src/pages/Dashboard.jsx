@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { fetchReviews, setApproval } from "../api/Reviews";
 
 export default function Dashboard() {
-  const [filters, setFilters] = useState({ sortBy: "submittedAt", sortDir: "desc" });
+  const [filters, setFilters] = useState({
+    sortBy: "submittedAt",
+    sortDir: "desc",
+  });
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
@@ -56,8 +59,18 @@ export default function Dashboard() {
         <table className="min-w-full bg-white border rounded-lg shadow-sm">
           <thead className="bg-gray-100">
             <tr>
-              {["Approve", "Listing", "Channel", "Guest", "Rating", "Date", "Text"].map((h) => (
-                <th key={h} className="text-left px-4 py-2 border-b">{h}</th>
+              {[
+                "Approve",
+                "Listing",
+                "Channel",
+                "Guest",
+                "Rating",
+                "Date",
+                "Text",
+              ].map((h) => (
+                <th key={h} className="text-left px-4 py-2 border-b">
+                  {h}
+                </th>
               ))}
             </tr>
           </thead>
@@ -88,7 +101,9 @@ export default function Dashboard() {
                   </span>
                 </td>
                 <td className="px-4 py-2 border-b">
-                  {r.submittedAt ? new Date(r.submittedAt).toLocaleDateString() : ""}
+                  {r.submittedAt
+                    ? new Date(r.submittedAt).toLocaleDateString()
+                    : ""}
                 </td>
                 <td className="px-4 py-2 border-b">{r.text}</td>
               </tr>
