@@ -1,4 +1,4 @@
-import { formatDate } from "../api/Reviews";
+import { formatDate } from "../api/ReviewAPI";
 
 export default function ReviewCard({ review }) {
   return (

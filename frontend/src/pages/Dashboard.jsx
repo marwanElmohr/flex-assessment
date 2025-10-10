@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchReviews, setApproval } from "../api/Reviews";
+import { fetchReviews, setApproval } from "../api/ReviewAPI";
 
 export default function Dashboard() {
   const [filters, setFilters] = useState({

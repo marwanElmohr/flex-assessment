@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchReviews } from "../api/Reviews";
+import { fetchReviews } from "../api/ReviewAPI";
 import Filter from "../components/Filter";
 import Reviews from "../components/ReviewsTable";
 

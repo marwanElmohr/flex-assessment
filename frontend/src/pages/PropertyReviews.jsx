@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchApproved, fetchReviews } from "../api/Reviews";
+import { fetchApproved, fetchReviews } from "../api/ReviewAPI";
 import ReviewCard from "../components/ReviewCard";
 import ListingSelect from "../components/ListingSelect";
 

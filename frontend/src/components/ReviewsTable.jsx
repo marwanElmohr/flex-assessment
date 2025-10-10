@@ -1,5 +1,5 @@
 import RatingBadge from "./RatingBadge";
-import { setApproval, formatDate } from "../api/Reviews";
+import { setApproval, formatDate } from "../api/ReviewAPI";
 
 export default function Reviews({ reviews, onApprovalChange }) {
   return (
