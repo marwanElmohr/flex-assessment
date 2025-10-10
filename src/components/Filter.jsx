@@ -1,8 +1,11 @@
+import ChooseDates from "./ChooseDates";
+
 export default function Filter({
   listings,
   filters,
   onChange,
   onApply,
+  onCancel,
   reviews,
 }) {
   const inputClass =
@@ -12,6 +15,18 @@ export default function Filter({
 
   const uniqueChannels = Array.from(
     new Set(reviews.map((r) => r.channel).filter(Boolean))
+  );
+
+  const uniqueCategories = Array.from(
+    new Set(
+      reviews
+        .flatMap((r) =>
+          Array.isArray(r.reviewCategory)
+            ? r.reviewCategory.map((c) => c.category)
+            : []
+        )
+        .filter(Boolean)
+    )
   );
 
   return (
@@ -39,7 +54,21 @@ export default function Filter({
         <option value="">All Channels</option>
         {uniqueChannels.map((ch) => (
           <option key={ch} value={ch}>
-            {ch.charAt(0).toUpperCase() + ch.slice(1)}
+            {ch}
+          </option>
+        ))}
+      </select>
+
+      <select
+        id="categoryFilter"
+        value={filters.category}
+        onChange={(e) => onChange("category", e.target.value)}
+        className={selectClass}
+      >
+        <option value="">All Categories</option>
+        {uniqueCategories.map((cat) => (
+          <option key={cat} value={cat}>
+            {cat}
           </option>
         ))}
       </select>
@@ -63,7 +92,7 @@ export default function Filter({
       >
         <option value="">Sort By</option>
         <option value="submittedAt">Date</option>
-        <option value="overallRating">Rating</option>
+        <option value="rating">Rating</option>
       </select>
 
       <select
@@ -83,6 +112,13 @@ export default function Filter({
         className="bg-[#284e4c] text-white text-sm font-semibold px-4 py-2 rounded-md shadow"
       >
         Apply Filters
+      </button>
+      <button
+        id="clearFilters"
+        onClick={onCancel}
+        className="bg-gray-200 text-gray-700 text-sm font-semibold px-4 py-2 rounded-md shadow"
+      >
+        Clear
       </button>
     </div>
   );

@@ -10,6 +10,7 @@ export default function Reviews({ reviews, onApprovalChange }) {
             <th className="px-4 py-3 text-left">Approve</th>
             <th className="px-4 py-3 text-left">Listing</th>
             <th className="px-4 py-3 text-left">Channel</th>
+            <th className="px-4 py-3 text-left">Categories</th>
             <th className="px-4 py-3 text-left">Guest</th>
             <th className="px-4 py-3 text-left">Rating</th>
             <th className="px-4 py-3 text-left">Date</th>
@@ -32,6 +33,11 @@ export default function Reviews({ reviews, onApprovalChange }) {
               </td>
               <td className="px-4 py-3">{r.listingName || "—"}</td>
               <td className="px-4 py-3">{r.channel || "—"}</td>
+              <td className="px-4 py-3">
+                {Array.isArray(r.reviewCategory)
+                  ? r.reviewCategory.map((c) => c.category).join(", ")
+                  : "—"}
+              </td>
               <td className="px-4 py-3">{r.guestName || "—"}</td>
               <td className="px-4 py-3">
                 <RatingBadge value={r.rating} />

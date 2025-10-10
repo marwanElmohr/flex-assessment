@@ -53,6 +53,20 @@ export default function ReviewsPage() {
     setReviews(filtered);
   };
 
+  const handleCancelFilters = () => {
+    setFilters({
+      listingName: "",
+      channel: "",
+      category: "",
+      minRating: "",
+      startDate: null,
+      endDate: null,
+      sortBy: "",
+      sortDir: "",
+    });
+    setReviews(allReviews);
+  };
+
   const handleApprovalChange = async () => {
     try {
       const updated = await fetchReviews({
@@ -63,7 +77,7 @@ export default function ReviewsPage() {
       setAllReviews(updated);
     } catch (err) {
       console.error(err);
-      alert("Failed to update approval:", error);
+      alert("Failed to update approval");
     }
   };
 
@@ -83,6 +97,7 @@ export default function ReviewsPage() {
             filters={filters}
             onChange={handleFilterChange}
             onApply={handleApplyFilters}
+            onCancel={handleCancelFilters}
             reviews={allReviews}
           />
           <Reviews reviews={reviews} onApprovalChange={handleApprovalChange} />
